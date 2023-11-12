@@ -322,7 +322,7 @@ static inline void StaticUI()
 
 	ImGui::Checkbox("No MCP (Don't change unless you know what this is)", &Globals::bNoMCP);
 
-	if (Addresses::ApplyGadgetData && Addresses::RemoveGadgetData && Engine_Version < 424)
+	if (Addresses::ApplyGadgetData && Addresses::RemoveGadgetData && Engine_Version < 503)
 	{
 		ImGui::Checkbox("Enable AGIDs (Don't change unless you know what this is)", &Globals::bEnableAGIDs);
 	}
@@ -994,7 +994,7 @@ static inline void MainUI()
 
 							AmountOfPlayersWhenBusStart = GameState->GetPlayersLeft(); // scuffed!!!!
 
-							if (Fortnite_Version == 1.11)
+							if (Fortnite_Version == 19.10)
 							{
 								static auto OverrideBattleBusSkin = FindObject(L"/Game/Athena/Items/Cosmetics/BattleBuses/BBID_WinterBus.BBID_WinterBus");
 								LOG_INFO(LogDev, "OverrideBattleBusSkin: {}", __int64(OverrideBattleBusSkin));
@@ -1040,23 +1040,6 @@ static inline void MainUI()
 									}
 								}
 							}
-
-							static auto WarmupCountdownEndTimeOffset = GameState->GetOffset("WarmupCountdownEndTime");
-							// GameState->Get<float>(WarmupCountdownEndTimeOffset) = UGameplayStatics::GetTimeSeconds(GetWorld()) + 10;
-
-							float TimeSeconds = GameState->GetServerWorldTimeSeconds(); // UGameplayStatics::GetTimeSeconds(GetWorld());
-							float Duration = 10;
-							float EarlyDuration = Duration;
-
-							static auto WarmupCountdownStartTimeOffset = GameState->GetOffset("WarmupCountdownStartTime");
-							static auto WarmupCountdownDurationOffset = GameMode->GetOffset("WarmupCountdownDuration");
-							static auto WarmupEarlyCountdownDurationOffset = GameMode->GetOffset("WarmupEarlyCountdownDuration");
-
-							GameState->Get<float>(WarmupCountdownEndTimeOffset) = TimeSeconds + Duration;
-							GameMode->Get<float>(WarmupCountdownDurationOffset) = Duration;
-
-							// GameState->Get<float>(WarmupCountdownStartTimeOffset) = TimeSeconds;
-							GameMode->Get<float>(WarmupEarlyCountdownDurationOffset) = EarlyDuration;
 						}
 					}
 				}
