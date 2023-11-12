@@ -304,6 +304,8 @@
     <ClCompile Include="extra.cpp">
       <Filter>Reboot\Private</Filter>
     </ClCompile>
+    <CLCompile Include="candy.h" />
+    <CLCompile Include="gradient.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h" />
