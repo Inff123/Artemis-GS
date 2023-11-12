@@ -304,8 +304,8 @@ static inline void InputVector(const std::string& baseText, FVector* vec)
 #endif
 }
 
-static int Width = 1920;
-static int Height = 1080;
+static int Width = 640;
+static int Height = 480;
 
 static int Tab = 1;
 static int PlayerTab = -1;
