@@ -8,9 +8,11 @@ Spawning In weather(Lightning and shit)via command.
 Spawning In Npcs(Klombo and a couple others) via command
 Spawning in Vehicals(Driftboards)via command
 Random Lategame Loot(Not Difficult really just about random number generator)
+Possibly Rebooting
+No MCP
 
 Not Working/Bugged-
-Having To start bus when in loading screen or else it wont load
+--This Happens Only Some times(Having To start bus when in loading screen or else it wont load)
 Auto Host(Works But because of bug listed above it kind of glitches and kills itself)
 
 
