@@ -377,7 +377,7 @@ DWORD WINAPI Main(LPVOID)
     Addresses::Init();
     Addresses::Print();
 
-    bEnableRebooting = Addresses::RebootingDelegate && Addresses::FinishResurrection && Addresses::GetSquadIdForCurrentPlayer && false;
+    bEnableRebooting = Addresses::RebootingDelegate && Addresses::FinishResurrection;
 
     LOG_INFO(LogDev, "Fortnite_CL: {}", Fortnite_CL);
     LOG_INFO(LogDev, "Fortnite_Version: {}", Fortnite_Version);
@@ -408,7 +408,7 @@ DWORD WINAPI Main(LPVOID)
 
     bSwitchedInitialLevel = true;
 
-    // Globals::bAutoRestart = IsRestartingSupported();
+     Globals::bAutoRestart = IsRestartingSupported();
 
     static auto GameModeDefault = FindObject<AFortGameModeAthena>(L"/Script/FortniteGame.Default__FortGameModeAthena");
     static auto FortPlayerControllerZoneDefault = FindObject<AFortPlayerController>(L"/Script/FortniteGame.Default__FortPlayerControllerZone");

@@ -1234,7 +1234,7 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 
 	uint8_t DeathCause = 0;
 
-	if (Fortnite_Version > 1.8 || Fortnite_Version == 1.11)
+	if (Fortnite_Version > 1.8 || Fortnite_Version == 19.10)
 	{
 		auto DeathInfo = DeadPlayerState->GetDeathInfo(); // Alloc<void>(DeathInfoStructSize);
 		DeadPlayerState->ClearDeathInfo();
@@ -1245,7 +1245,7 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 
 		// LOG_INFO(LogDev, "Tags: {}", Tags.ToStringSimple(true));
 
-		DeathCause = ToDeathCause(Tags, false, DeadPawn); // DeadPawn->IsDBNO() ??
+		DeathCause = ToDeathCause(Tags, true, DeadPawn); // DeadPawn->IsDBNO() ??
 
 		LOG_INFO(LogDev, "DeathCause: {}", (int)DeathCause);
 		LOG_INFO(LogDev, "DeadPawn->IsDBNO(): {}", DeadPawn->IsDBNO());

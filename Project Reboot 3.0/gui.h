@@ -84,10 +84,10 @@ extern inline bool bEnableBotTick = false;
 extern inline bool bZoneReversing = false;
 extern inline bool bEnableCombinePickup = false;
 extern inline int AmountOfBotsToSpawn = 0;
-extern inline bool bEnableRebooting = false;
+extern inline bool bEnableRebooting = true;
 extern inline bool bEngineDebugLogs = false;
 extern inline bool bStartedBus = false;
-extern inline int AmountOfHealthSiphon = 0;
+extern inline int AmountOfHealthSiphon = 50;
 
 // THE BASE CODE IS FROM IMGUI GITHUB
 
