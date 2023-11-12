@@ -363,7 +363,7 @@ DWORD WINAPI Main(LPVOID)
         return 1;
     }
 
-    LOG_INFO(LogInit, "Initializing Project Reboot!");
+    LOG_INFO(LogInit, "Initializing Flipped GS(I Hate Code)");
 
     Addresses::SetupVersion();
 
@@ -386,13 +386,13 @@ DWORD WINAPI Main(LPVOID)
 #ifdef ABOVE_S20
     if (Fortnite_Version < 20)
     {
-        MessageBoxA(0, "Please undefine ABOVE_S20", "Project Reboot 3.0", MB_ICONERROR);
+        MessageBoxA(0, "Please undefine ABOVE_S20", "Flipped GS Cool", MB_ICONERROR);
         return 0;
     }
 #else
     if (Fortnite_Version > 20)
     {
-        MessageBoxA(0, "Please define ABOVE_S20", "Project Reboot 3.0", MB_ICONERROR);
+        MessageBoxA(0, "Please define ABOVE_S20", "Flipped GS Is cool", MB_ICONERROR);
         return 0;
     }
 #endif
