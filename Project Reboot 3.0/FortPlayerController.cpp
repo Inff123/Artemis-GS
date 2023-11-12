@@ -1536,27 +1536,7 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 			if (GameState->GetGamePhase() > EAthenaGamePhase::Warmup)
 			{
 				auto AllPlayerStates = UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFortPlayerStateAthena::StaticClass());
-
-				bool bDidSomeoneWin = AllPlayerStates.Num() == 0;
-
-				for (int i = 0; i < AllPlayerStates.Num(); ++i)
-				{
-					auto CurrentPlayerState = (AFortPlayerStateAthena*)AllPlayerStates.at(i);
-
-					if (CurrentPlayerState->GetPlace() <= 1)
-					{
-						bDidSomeoneWin = true;
-						break;
-					}
-				}
-
-				// LOG_INFO(LogDev, "bDidSomeoneWin: {}", bDidSomeoneWin);
-
-				// if (GameState->GetGamePhase() == EAthenaGamePhase::EndGame)
-				if (bDidSomeoneWin)
-				{
-					CreateThread(0, 0, RestartThread, 0, 0, 0);
-				}
+				TArray<AFortPlayerControllerAthena*> AlivePlayers = GameMode->GetAlivePlayers();
 			}
 		}
 	}

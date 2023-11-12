@@ -305,7 +305,7 @@ static inline void StaticUI()
 {
 	if (IsRestartingSupported())
 	{
-		// ImGui::Checkbox("Auto Restart", &Globals::bAutoRestart);
+		 ImGui::Checkbox("Auto Restart", &Globals::bAutoRestart);
 
 		if (Globals::bAutoRestart)
 		{
@@ -750,9 +750,9 @@ static inline void MainUI()
 				}
 				
 
-				if (!bIsInAutoRestart && Engine_Version < 424 && ImGui::Button("Restart"))
+				if (!bIsInAutoRestart && Engine_Version < 503 && ImGui::Button("Restart"))
 				{
-					if (Engine_Version < 424)
+					if (Engine_Version < 503)
 					{
 						Restart();
 						LOG_INFO(LogGame, "Restarting!");
