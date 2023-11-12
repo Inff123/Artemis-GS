@@ -56,7 +56,7 @@ inline bool AreVehicleWeaponsEnabled()
 
 inline bool IsRestartingSupported()
 {
-	return Engine_Version >= 419 && Engine_Version < 424;
+	return Engine_Version >= 419 && Engine_Version < 503;
 }
 
 // #define ABOVE_S20
