@@ -8,7 +8,6 @@
 #include <dxgi.h>
 #include <d3d11.h>
 #include <d3d9.h>
-#include "candy.h"
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_dx9.h>
@@ -68,7 +67,7 @@ extern inline int StartReverseZonePhase = 7;
 extern inline int EndReverseZonePhase = 5;
 extern inline float StartingShield = 0;
 extern inline bool bEnableReverseZone = false;
-extern inline int AmountOfPlayersWhenBusStart = 0; 
+extern inline int AmountOfPlayersWhenBusStart = 0;
 extern inline bool bHandleDeath = true;
 extern inline bool bUseCustomMap = false;
 extern inline std::string CustomMapName = "";
@@ -192,42 +191,39 @@ static inline void InitStyle()
 	mStyle.ScrollbarRounding = 16.0f;
 
 	ImGuiStyle& style = mStyle;
-	style.Colors[ImGuiCol_Text] = ImVec4(0.00f, 0.82f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.00f, 0.36f, 0.63f, 1.00f);
-	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.00f, 0.04f, 0.12f, 1.00f);
-	style.Colors[ImGuiCol_ChildBg] = ImVec4(0.03f, 0.04f, 0.22f, 1.00f);
-	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.12f, 0.06f, 0.27f, 1.00f);
-	style.Colors[ImGuiCol_Border] = ImVec4(0.61f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.00f, 0.75f, 1.00f, 0.20f);
-	style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.34f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.08f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.00f, 0.81f, 0.95f, 1.00f);
-	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.61f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.25f, 0.00f, 0.54f, 0.81f);
-	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.61f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.00f, 0.88f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.61f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.01f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.95f, 0.19f, 0.67f, 1.00f);
-	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.95f, 0.19f, 0.92f, 1.00f);
-	style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.00f, 1.00f, 0.95f, 1.00f);
-	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.81f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_Button] = ImVec4(0.00f, 0.98f, 1.00f, 0.52f);
-	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.94f, 0.00f, 1.00f, 0.80f);
-	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.01f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_Header] = ImVec4(0.00f, 0.95f, 1.00f, 0.40f);
-	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.94f, 0.00f, 1.00f, 0.80f);
-	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.01f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_Separator] = ImVec4(0.74f, 0.00f, 1.00f, 0.50f);
-	style.Colors[ImGuiCol_SeparatorHovered] = ImVec4(0.34f, 0.00f, 1.00f, 0.78f);
-	style.Colors[ImGuiCol_SeparatorActive] = ImVec4(0.00f, 1.00f, 0.85f, 1.00f);
-	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.61f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.89f, 0.26f, 0.98f, 0.67f);
-	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.00f, 0.88f, 1.00f, 0.95f);
-	style.Colors[ImGuiCol_Tab] = ImVec4(0.36f, 0.00f, 1.00f, 1.00f);
-	style.Colors[ImGuiCol_TabHovered] = ImVec4(0.00f, 0.92f, 1.00f, 0.80f);
-	style.Colors[ImGuiCol_TabActive] = ImVec4(0.62f, 0.00f, 0.80f, 1.00f);
-	style.Colors[ImGuiCol_PlotHistogram] = ImVec4(0.00f, 1.00f, 0.88f, 1.00f);
+	style.Colors[ImGuiCol_Text] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.00f, 0.40f, 0.41f, 1.00f);
+	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.00f, 0.00f, 0.00f, 1.00f);
+	style.Colors[ImGuiCol_Border] = ImVec4(0.00f, 1.00f, 1.00f, 0.65f);
+	style.Colors[ImGuiCol_BorderShadow] = ImVec4(0.00f, 0.00f, 0.00f, 0.00f);
+	style.Colors[ImGuiCol_FrameBg] = ImVec4(0.44f, 0.80f, 0.80f, 0.18f);
+	style.Colors[ImGuiCol_FrameBgHovered] = ImVec4(0.44f, 0.80f, 0.80f, 0.27f);
+	style.Colors[ImGuiCol_FrameBgActive] = ImVec4(0.44f, 0.81f, 0.86f, 0.66f);
+	style.Colors[ImGuiCol_TitleBg] = ImVec4(0.14f, 0.18f, 0.21f, 0.73f);
+	style.Colors[ImGuiCol_TitleBgCollapsed] = ImVec4(0.00f, 0.00f, 0.00f, 0.54f);
+	style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.00f, 1.00f, 1.00f, 0.27f);
+	style.Colors[ImGuiCol_MenuBarBg] = ImVec4(0.00f, 0.00f, 0.00f, 0.20f);
+	style.Colors[ImGuiCol_ScrollbarBg] = ImVec4(0.22f, 0.29f, 0.30f, 0.71f);
+	style.Colors[ImGuiCol_ScrollbarGrab] = ImVec4(0.00f, 1.00f, 1.00f, 0.44f);
+	style.Colors[ImGuiCol_ScrollbarGrabHovered] = ImVec4(0.00f, 1.00f, 1.00f, 0.74f);
+	style.Colors[ImGuiCol_ScrollbarGrabActive] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_CheckMark] = ImVec4(0.00f, 1.00f, 1.00f, 0.68f);
+	style.Colors[ImGuiCol_SliderGrab] = ImVec4(0.00f, 1.00f, 1.00f, 0.36f);
+	style.Colors[ImGuiCol_SliderGrabActive] = ImVec4(0.00f, 1.00f, 1.00f, 0.76f);
+	style.Colors[ImGuiCol_Button] = ImVec4(0.00f, 0.65f, 0.65f, 0.46f);
+	style.Colors[ImGuiCol_ButtonHovered] = ImVec4(0.01f, 1.00f, 1.00f, 0.43f);
+	style.Colors[ImGuiCol_ButtonActive] = ImVec4(0.00f, 1.00f, 1.00f, 0.62f);
+	style.Colors[ImGuiCol_Header] = ImVec4(0.00f, 1.00f, 1.00f, 0.33f);
+	style.Colors[ImGuiCol_HeaderHovered] = ImVec4(0.00f, 1.00f, 1.00f, 0.42f);
+	style.Colors[ImGuiCol_HeaderActive] = ImVec4(0.00f, 1.00f, 1.00f, 0.54f);
+	style.Colors[ImGuiCol_ResizeGrip] = ImVec4(0.00f, 1.00f, 1.00f, 0.54f);
+	style.Colors[ImGuiCol_ResizeGripHovered] = ImVec4(0.00f, 1.00f, 1.00f, 0.74f);
+	style.Colors[ImGuiCol_ResizeGripActive] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_PlotLines] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_PlotLinesHovered] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_PlotHistogram] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(0.00f, 1.00f, 1.00f, 1.00f);
+	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.00f, 1.00f, 1.00f, 0.22f);
 }
 
 static inline void TextCentered(const std::string& text, bool bNewLine = true) {
@@ -305,7 +301,7 @@ static inline void StaticUI()
 {
 	if (IsRestartingSupported())
 	{
-		 ImGui::Checkbox("Auto Restart", &Globals::bAutoRestart);
+		ImGui::Checkbox("Auto Restart", &Globals::bAutoRestart);
 
 		if (Globals::bAutoRestart)
 		{
@@ -320,13 +316,13 @@ static inline void StaticUI()
 	ImGui::Checkbox("Log ProcessEvent", &Globals::bLogProcessEvent);
 	// ImGui::InputInt("Amount of bots to spawn", &AmountOfBotsToSpawn);
 #endif
-	
+
 	ImGui::Checkbox("Infinite Ammo", &Globals::bInfiniteAmmo);
 	ImGui::Checkbox("Infinite Materials", &Globals::bInfiniteMaterials);
 
 	ImGui::Checkbox("No MCP (Don't change unless you know what this is)", &Globals::bNoMCP);
 
-	if (Addresses::ApplyGadgetData && Addresses::RemoveGadgetData && Engine_Version < 503)
+	if (Addresses::ApplyGadgetData && Addresses::RemoveGadgetData && Engine_Version < 424)
 	{
 		ImGui::Checkbox("Enable AGIDs (Don't change unless you know what this is)", &Globals::bEnableAGIDs);
 	}
@@ -587,7 +583,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 		Sleep(1000 / MaxTickRate);
 	}
 
-	
+
 	static auto MapInfoOffset = GameState->GetOffset("MapInfo");
 	auto MapInfo = GameState->Get(MapInfoOffset);
 
@@ -609,7 +605,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 			}
 		}
 	}
-	
+
 
 	while (GameState->GetGamePhase() == EAthenaGamePhase::Aircraft)
 	{
@@ -903,11 +899,11 @@ static inline void MainUI()
 					SpawnBGAs();
 				}
 
-			
+
 				if (ImGui::Button("New"))
 				{
 					static auto NextFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.Next");
-					static auto NewFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.New");					
+					static auto NewFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.New");
 					auto Loader = GetEventLoader("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C");
 
 					LOG_INFO(LogDev, "Loader: {}", __int64(Loader));
@@ -935,7 +931,7 @@ static inline void MainUI()
 						// Loader->ProcessEvent(NewFn, &NewParam);
 					}
 				}
-				
+
 
 				if (!bIsInAutoRestart && Engine_Version < 503 && ImGui::Button("Restart"))
 				{
@@ -976,49 +972,7 @@ static inline void MainUI()
 							auto GameState = Cast<AFortGameStateAthena>(GameMode->GetGameState());
 
 							AmountOfPlayersWhenBusStart = GameState->GetPlayersLeft();
-							if (Fortnite_Version == 19.10)
-							{
-								static auto OvverideBattleBusSKin = FindObject(L"/Game/Athena/Items/Cosmetics/BattleBuses/BBID_WinterBus.BBID_WinterBus");
-								
-								if (OvverideBattleBusSKin)
-								{
-									static auto AssetMangerOffset = GetEngine()->GetOffset("AssetManager");
-									auto AssetManager = GetEngine()->Get(AssetMangerOffset);
-									if (AssetManager)
-									{
-										static auto AthenaGameDataOffset = AssetManager->GetOffset("AthenaGameData");
-										auto AthenaGameData = AssetManager->Get(AthenaGameDataOffset);
 
-										if (AthenaGameData)
-										{
-											static auto DefaultBattleBusSkinOffset = AthenaGameData->GetOffset("DefaultBattleBusSkin");
-											AthenaGameData->Get(DefaultBattleBusSkinOffset) = OvverideBattleBusSKin;
-										}
-									}
-									static auto DefaultBattleBusOffset = GameState->GetOffset("DefaultBattleBus");
-									GameState->Get(DefaultBattleBusOffset) = OvverideBattleBusSKin;
-
-									static auto FortAthenaAircraftClass = FindObject<UClass>("/Script/FortniteGame.FortAthenaAircraft");
-									auto AllAircrafts = UGameplayStatics::GetAllActorsOfClass(GetWorld(), FortAthenaAircraftClass);
-
-									for (int i = 0; i < AllAircrafts.Num(); i++)
-									{
-										auto Aircraft = AllAircrafts.at(i);
-
-										static auto DefaultBusSkinOffset = Aircraft->GetOffset("DefaultBusSkin");
-										Aircraft->Get(DefaultBusSkinOffset) = OvverideBattleBusSKin;
-
-										static auto SpawnedCosmeticActorOffset = Aircraft->GetOffset("SpawnedCosmeticActor");
-										auto SpawnedCosmeticActor = Aircraft->Get<AActor*>(SpawnedCosmeticActorOffset);
-
-										if (SpawnedCosmeticActor)
-										{
-											static auto ActiveSkinOffset = SpawnedCosmeticActor->GetOffset("ActiveSkin");
-											SpawnedCosmeticActor->Get(ActiveSkinOffset) = OvverideBattleBusSKin;
-										}
-									}
-								}
-							}
 							if (Globals::bLateGame.load())
 							{
 								CreateThread(0, 0, LateGameThread, 0, 0, 0);
@@ -1111,7 +1065,7 @@ static inline void MainUI()
 
 		else if (Tab == PLAYERS_TAB)
 		{
-			
+
 		}
 
 		else if (Tab == EVENT_TAB)
@@ -1328,7 +1282,7 @@ static inline void MainUI()
 			if (ImGui::Button("Give Item to Everyone"))
 			{
 				auto ItemDefinition = FindObject<UFortItemDefinition>(ItemToGrantEveryone, nullptr, ANY_PACKAGE);
-				
+
 				if (ItemDefinition)
 				{
 					static auto World_NetDriverOffset = GetWorld()->GetOffset("NetDriver");
@@ -1538,7 +1492,7 @@ static inline void MainUI()
 				}
 			} */
 
-			/* 
+			/*
 			ImGui::Text(std::format("Amount of hooks {}", AllFunctionHooks.size()).c_str());
 
 			for (auto& FunctionHook : AllFunctionHooks)
@@ -1563,7 +1517,7 @@ static inline void MainUI()
 
 					FunctionHook.IsHooked = !FunctionHook.IsHooked;
 				}
-			} 
+			}
 			*/
 		}
 		else if (Tab == DEBUGLOG_TAB)
@@ -1612,7 +1566,7 @@ static inline void PregameUI()
 
 		ImGui::SliderInt("Seconds until load into map", &SecondsUntilTravel, 1, 100);
 	}
-		
+
 	if (!Globals::bCreative)
 		ImGui::InputText("Playlist", &PlaylistName);
 }
