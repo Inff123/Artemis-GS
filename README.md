@@ -16,4 +16,5 @@ Not Working/Bugged-
 Auto Host(Works But because of bug listed above it kind of glitches and kills itself)
 Can Drop Infinite Spiderman Mythics
 Rebooting and DBNO
+Can Drop Infinite FlareGuns
 
