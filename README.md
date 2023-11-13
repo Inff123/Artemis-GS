@@ -17,4 +17,6 @@ Auto Host(Works But because of bug listed above it kind of glitches and kills it
 Can Drop Infinite Spiderman Mythics
 Rebooting and DBNO
 Can Drop Infinite FlareGuns
+After equipping a trap it bugs out and you cant do anything
+sometimes the reticle doesnt show up for spiderman
 
