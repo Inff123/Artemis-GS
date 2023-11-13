@@ -258,10 +258,10 @@ void ChangeLevels()
 
     LOG_INFO(LogDev, "FindGIsClient(): 0x{:x}", FindGIsClient() - __int64(GetModuleHandleW(0)));
 
-    // auto bruh = std::wstring(CustomMapName.begin(), CustomMapName.end());
-    // auto bruhh = (L"open " + bruh);
+     /*auto bruh = std::wstring(CustomMapName.begin(), CustomMapName.end());
+     auto bruhh = (L"open " + bruh);*/
 
-    FString LevelB = /* bUseCustomMap ? bruhh.c_str() : */ (Engine_Version < 424
+    FString LevelB =  /*bUseCustomMap ? bruhh.c_str() : */ (Engine_Version < 424
         ? L"open Athena_Terrain" : Engine_Version >= 500 ? Engine_Version >= 501
         ? L"open Asteria_Terrain"
         : Globals::bCreative ? L"open Creative_NoApollo_Terrain"
