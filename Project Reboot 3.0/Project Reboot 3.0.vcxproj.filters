@@ -306,6 +306,15 @@
     </ClCompile>
     <CLCompile Include="candy.h" />
     <CLCompile Include="gradient.h" />
+    <ClCompile Include="Helper.cpp">
+      <Filter>Reboot\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="SetSnowIndex.cpp">
+      <Filter>Reboot\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="Structs.cpp">
+      <Filter>Reboot\Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h" />
@@ -961,6 +970,15 @@
     </ClInclude>
     <ClInclude Include="FortPlaylistAthena.h">
       <Filter>FortniteGame\Source\FortniteGame\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Reboot\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="SetSnowIndex.h">
+      <Filter>Reboot\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>Reboot\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

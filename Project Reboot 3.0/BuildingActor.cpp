@@ -1,5 +1,4 @@
 #include "BuildingActor.h"
-
 #include "FortWeapon.h"
 #include "BuildingSMActor.h"
 #include "FortPlayerControllerAthena.h"

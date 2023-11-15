@@ -236,6 +236,8 @@ public:
 	static inline void (*SetZoneToIndexOriginal)(AFortGameModeAthena* GameModeAthena, int OverridePhaseMaybeIDFK);
 	static inline void (*OnAircraftEnteredDropZoneOriginal)(AFortGameModeAthena* GameModeAthena, AActor* Aircraft);
 
+	
+
 	AFortSafeZoneIndicator*& GetSafeZoneIndicator()
 	{
 		static auto SafeZoneIndicatorOffset = GetOffset("SafeZoneIndicator");
@@ -245,7 +247,9 @@ public:
 	AFortGameStateAthena* GetGameStateAthena()
 	{
 		return (AFortGameStateAthena*)GetGameState();
+		
 	}
+	
 
 	TArray<FItemAndCount>& GetStartingItems() // really in zone
 	{

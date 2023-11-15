@@ -7,6 +7,7 @@
 #include "ScriptInterface.h"
 #include "Interface.h"
 #include "FortAthenaMapInfo.h"
+#include "helper.h"
 
 enum class EAthenaGamePhaseStep : uint8_t // idk if this changes
 {

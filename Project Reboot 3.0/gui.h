@@ -42,6 +42,8 @@
 #include "BGA.h"
 #include "vendingmachine.h"
 #include "die.h"
+#include "Helper.h"
+#include "SetSnowIndex.h"
 
 #define GAME_TAB 1
 #define PLAYERS_TAB 2
@@ -899,7 +901,16 @@ static inline void MainUI()
 					SpawnBGAs();
 				}
 
+				if (Fortnite_Version == 19.10)
+				{
+					static int SnowIndex = 0;
+					ImGui::SliderInt("SnowIndex", &SnowIndex, 0, 6);
 
+					if (ImGui::Button("Set Snow Phase"))
+					{
+						Helper::SetSnowIndex(SnowIndex);
+					}
+				}
 				if (ImGui::Button("New"))
 				{
 					static auto NextFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.Next");

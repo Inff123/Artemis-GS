@@ -4,6 +4,7 @@
 #include "FortGameModeAthena.h"
 #include "gui.h"
 
+
 bool ABuildingContainer::SpawnLoot(AFortPawn* Pawn)
 {
 	if (!Pawn)

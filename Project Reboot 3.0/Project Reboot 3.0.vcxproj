@@ -244,6 +244,7 @@
     <ClCompile Include="GameplayStatics.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GenericPlatformMath.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="inc.cpp" />
     <ClCompile Include="InventoryManagementLibrary.cpp" />
     <ClCompile Include="KismetMathLibrary.cpp" />
@@ -264,6 +265,8 @@
     <ClCompile Include="reboot.cpp" />
     <ClCompile Include="SavePackage.cpp" />
     <ClCompile Include="ScriptDisassembler.cpp" />
+    <ClCompile Include="SetSnowIndex.cpp" />
+    <ClCompile Include="Structs.cpp" />
     <ClCompile Include="UnrealMath.cpp" />
     <ClCompile Include="UnrealNames.cpp" />
     <ClCompile Include="UObjectGlobals.cpp" />
@@ -409,6 +412,7 @@
     <ClInclude Include="GenericPlatformTime.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="gui.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="hooking.h" />
     <ClInclude Include="IdentityFunctor.h" />
     <ClInclude Include="inc.h" />
@@ -462,6 +466,7 @@
     <ClInclude Include="ScriptDisassembler.h" />
     <ClInclude Include="ScriptInterface.h" />
     <ClInclude Include="Set.h" />
+    <ClInclude Include="SetSnowIndex.h" />
     <ClInclude Include="SharedPointer.h" />
     <ClInclude Include="SharedPointerInternals.h" />
     <ClInclude Include="SoftObjectPath.h" />
@@ -471,6 +476,7 @@
     <ClInclude Include="SparseArray.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="StringAssetReference.h" />
+    <ClInclude Include="Structs.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="TimerManager.h" />
     <ClInclude Include="Transform.h" />
