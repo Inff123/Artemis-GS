@@ -315,6 +315,9 @@
     <ClCompile Include="Structs.cpp">
       <Filter>Reboot\Public</Filter>
     </ClCompile>
+    <ClCompile Include="AGIDHandler.cpp">
+      <Filter>Reboot\Public</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h" />
@@ -978,6 +981,9 @@
       <Filter>Reboot\Public</Filter>
     </ClInclude>
     <ClInclude Include="Structs.h">
+      <Filter>Reboot\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="AGIDHandler.h">
       <Filter>Reboot\Public</Filter>
     </ClInclude>
   </ItemGroup>

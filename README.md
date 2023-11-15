@@ -10,6 +10,8 @@ Spawning in Vehicals(Driftboards)via command
 Random Lategame Loot(Not Difficult really just about random number generator)
 Possibly Rebooting
 No MCP
+Setting Snow Phases
+
 
 Not Working/Bugged-
 --This Happens Only Some times(Having To start bus when in loading screen or else it wont load)

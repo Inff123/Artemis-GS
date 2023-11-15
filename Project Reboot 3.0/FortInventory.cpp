@@ -253,13 +253,14 @@ bool AFortInventory::RemoveItem(const FGuid& ItemGuid, bool* bShouldUpdate, int 
 {
 	if (bShouldUpdate)
 		*bShouldUpdate = false;
-
+	
 	auto ItemInstance = FindItemInstance(ItemGuid);
 	auto ReplicatedEntry = FindReplicatedEntry(ItemGuid);
 
 	if (!ItemInstance || !ReplicatedEntry)
 		return false;
-
+	//This Is My Very Fucked Idea Do Not Do This If your smart
+	
 	auto ItemDefinition = Cast<UFortWorldItemDefinition>(ReplicatedEntry->GetItemDefinition());
 
 	if (!ItemDefinition)
