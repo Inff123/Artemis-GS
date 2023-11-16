@@ -64,6 +64,8 @@ static UFortPlaylistAthena* GetPlaylistToUse()
 
 	if (Globals::bCreative)
 		Playlist = FindObject<UFortPlaylistAthena>(L"/Game/Athena/Playlists/Creative/Playlist_PlaygroundV2.Playlist_PlaygroundV2");
+	if (Globals::bBughaLateGame)
+		Playlist = FindObject<UFortPlaylistAthena>(L"/BlueCheese/Playlists/Playlist_ShowdownTournament_BlueCheese_Trios.Playlist_ShowdownTournament_BlueCheese_Trios");
 
 	return Playlist;
 }
@@ -1513,6 +1515,7 @@ void AFortGameModeAthena::Athena_HandleStartingNewPlayerHook(AFortGameModeAthena
 	}
 
 	LOG_INFO(LogDev, "HandleStartingNewPlayer end");
+
 
 	if (Engine_Version <= 420)
 	{

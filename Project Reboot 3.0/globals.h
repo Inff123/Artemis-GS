@@ -11,12 +11,13 @@ namespace Globals
 	extern inline bool bEnableAGIDs = true;
 	extern inline bool bNoMCP = false;
 	extern inline bool bLogProcessEvent = false;
-	// extern inline bool bLateGame = false;
+	 //extern inline bool bLateGame = false;
 	extern inline std::atomic<bool> bLateGame(false);
+	extern inline bool bBughaLateGame = false;
 
 	extern inline bool bInfiniteMaterials = false;
 	extern inline bool bInfiniteAmmo = false;
-
+	
 	extern inline bool bHitReadyToStartMatch = false;
 	extern inline bool bInitializedPlaylist = false;
 	extern inline bool bStartedListening = false;
@@ -39,3 +40,4 @@ extern inline std::string PlaylistName =
 // "/Game/Athena/Playlists/Creative/Playlist_PlaygroundV2.Playlist_PlaygroundV2";
 // "/Game/Athena/Playlists/Ashton/Playlist_Ashton_Sm.Playlist_Ashton_Sm";
 // "/Game/Athena/Playlists/BattleLab/Playlist_BattleLab.Playlist_BattleLab";
+// "/BlueCheese/Playlists/Playlist_ShowdownTournament_BlueCheese_Trios.Playlist_ShowdownTournament_BlueCheese_Trios";
