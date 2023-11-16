@@ -61,13 +61,11 @@ static UFortPlaylistAthena* GetPlaylistToUse()
 	}
 
 	// SET OVERRIDE PLAYLIST DOWN HERE
-	/*
+	
 	if (Globals::bCreative)
 		Playlist = FindObject<UFortPlaylistAthena>(L"/Game/Athena/Playlists/Creative/Playlist_PlaygroundV2.Playlist_PlaygroundV2");
-	*/
+	
 	// Cut Out Creative Cus Skunked So L Bozo Fuck My Life
-	if (Globals::bBughaGame)
-		Playlist = FindObject<UFortPlaylistAthena>(L"/BlueCheese/Playlists/Playlist_ShowdownTournament_BlueCheese_Trios.Playlist_ShowdownTournament_BlueCheese_Trios");
 
 	return Playlist;
 }

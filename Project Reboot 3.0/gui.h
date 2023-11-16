@@ -108,11 +108,7 @@ static inline void SetIsLategame(bool Value)
 	Globals::bLateGame.store(Value);
 	StartingShield = Value ? 100 : 0;
 }
-static inline void SetIsBugha(bool Value)
-{
-	Globals::bBughaGame.store(Value);
-	StartingShield = Value ? 100 : 0;
-}
+
 
 static inline void Restart() // todo move?
 {
@@ -867,6 +863,8 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 
 	return 0;
 }
+// Save This For Later Ig
+/*
 static inline DWORD WINAPI BughaLateGameThread(LPVOID)
 {
 	auto GameMode = Cast<AFortGameModeAthena>(GetWorld()->GetGameMode());
@@ -1111,6 +1109,7 @@ static inline DWORD WINAPI BughaLateGameThread(LPVOID)
 	}
 	return 0;
 }
+*/
 static inline void MainUI()
 {
 	bool bLoaded = true;
@@ -1225,7 +1224,7 @@ static inline void MainUI()
 
 				if (!bStartedBus)
 				{
-					if (Globals::bLateGame.load() ||Globals::bBughaGame.load() || Fortnite_Version >= 11)
+					if (Globals::bLateGame.load() || Fortnite_Version >= 11)
 					{
 						if (ImGui::Button("Start Bus"))
 						{
@@ -1234,10 +1233,6 @@ static inline void MainUI()
 							auto GameMode = (AFortGameModeAthena*)GetWorld()->GetGameMode();
 							auto GameState = Cast<AFortGameStateAthena>(GameMode->GetGameState());
 
-							if (Globals::bBughaGame.load())
-							{
-								CreateThread(0, 0, BughaLateGameThread, 0, 0, 0);
-							}
 							if (Globals::bLateGame.load())
 							{
 								CreateThread(0, 0, LateGameThread, 0, 0, 0);
@@ -1790,12 +1785,7 @@ static inline void PregameUI()
 	{
 		ImGui::Checkbox("Creative", &Globals::bCreative);
 	}
-	if (Fortnite_Version == 19.10 && Addresses::SetZoneToIndex)
-	{
-		bool bWillBeBugha = Globals::bBughaGame.load();
-		ImGui::Checkbox("BughaLateGame", &bWillBeBugha);
-		SetIsLategame(bWillBeBugha);
-	}
+	
 	
 	if (Addresses::SetZoneToIndex)
 	{
@@ -1821,12 +1811,10 @@ static inline void PregameUI()
 
 		ImGui::SliderInt("Seconds until load into map", &SecondsUntilTravel, 1, 100);
 	}
-	/*
+	
 	if (!Globals::bCreative)
 		ImGui::InputText("Playlist", &PlaylistName);
-	*/
-	if (!Globals::bBughaGame)
-		ImGui::InputText("Playlist", &PlaylistName);
+	
 }
 
 static inline HICON LoadIconFromMemory(const char* bytes, int bytes_size, const wchar_t* IconName) {
