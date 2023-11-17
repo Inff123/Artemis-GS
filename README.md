@@ -21,4 +21,5 @@ Rebooting and DBNO
 Can Drop Infinite FlareGuns
 After equipping a trap it bugs out and you cant do anything
 sometimes the reticle doesnt show up for spiderman
-
+Skunked BughaLateGame(Aka Doesn't work for nothing)
+Putting Bus Skins On
