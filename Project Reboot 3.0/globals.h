@@ -13,6 +13,7 @@ namespace Globals
 	extern inline bool bLogProcessEvent = false;
 	 //extern inline bool bLateGame = false;
 	extern inline std::atomic<bool> bLateGame(false);
+	extern inline bool b1910Lategame = false;
 
 	extern inline bool bInfiniteMaterials = false;
 	extern inline bool bInfiniteAmmo = false;

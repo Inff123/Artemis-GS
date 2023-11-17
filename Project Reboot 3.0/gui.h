@@ -1785,7 +1785,10 @@ static inline void PregameUI()
 	{
 		ImGui::Checkbox("Creative", &Globals::bCreative);
 	}
-	
+	if (Fortnite_Version == 19.10)
+	{
+		ImGui::Checkbox("FixLategame", &Globals::b1910Lategame);
+	}
 	
 	if (Addresses::SetZoneToIndex)
 	{
@@ -1812,9 +1815,13 @@ static inline void PregameUI()
 		ImGui::SliderInt("Seconds until load into map", &SecondsUntilTravel, 1, 100);
 	}
 	
+	/*
 	if (!Globals::bCreative)
 		ImGui::InputText("Playlist", &PlaylistName);
-	
+	*/ //Creative Does Not work Anyway So I Can Remove This
+
+	if (!Globals::b1910Lategame)
+		ImGui::InputText("Playlist", &PlaylistName);
 }
 
 static inline HICON LoadIconFromMemory(const char* bytes, int bytes_size, const wchar_t* IconName) {
