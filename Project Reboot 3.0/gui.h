@@ -1233,6 +1233,7 @@ static inline void MainUI()
 							auto GameMode = (AFortGameModeAthena*)GetWorld()->GetGameMode();
 							auto GameState = Cast<AFortGameStateAthena>(GameMode->GetGameState());
 
+							/*
 							if (Fortnite_Version == 19.10)
 							{
 								static auto OverrideBattleBusSkin = FindObject(L"/Game/Athena/Items/Cosmetics/BattleBuses/BBID_WinterBus.BBID_WinterBus");
@@ -1278,8 +1279,8 @@ static inline void MainUI()
 										}
 									}
 								}
-
 							}
+							*/
 							if (Globals::bLateGame.load())
 							{
 								CreateThread(0, 0, LateGameThread, 0, 0, 0);
