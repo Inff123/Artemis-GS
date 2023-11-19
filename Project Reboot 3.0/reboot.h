@@ -103,6 +103,8 @@ static TArray<UObject*>& GetLocalPlayers()
 	return GameInstance->Get<TArray<UObject*>>(LocalPlayersOffset);
 }
 
+
+
 static inline std::string GetNPC(std::string NPCToCheck)
 {
 	std::string NPCClass;

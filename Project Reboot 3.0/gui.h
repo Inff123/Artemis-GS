@@ -331,6 +331,8 @@ static inline void StaticUI()
 	}
 }
 
+
+
 static inline void MainTabs()
 {
 	// std::ofstream bannedStream(Moderation::Banning::GetFilePath());

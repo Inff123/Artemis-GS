@@ -1,5 +1,6 @@
 #pragma once
 
+#include "globals.h"
 #include "reboot.h"
 #include "Actor.h"
 #include "SoftObjectPath.h"
@@ -38,6 +39,8 @@ enum class ENavSystemOverridePolicy : uint8_t
     Skip = 2,
     ENavSystemOverridePolicy_MAX = 3
 };
+
+
 
 extern inline void (*NavSystemCleanUpOriginal)(UNavigationSystemV1*, uint8) = nullptr;
 
@@ -235,6 +238,8 @@ static void SetupNavConfig(const FName& AgentName)
     SetNavigationSystem(NavSystemOverride);
 }
 
+
+
 static AFortPlayerPawn* SpawnAIFromCustomizationData(const FVector& Location, UFortAthenaAIBotCustomizationData* CustomizationData)
 {
     static auto PawnClassOffset = CustomizationData->GetOffset("PawnClass");
@@ -366,3 +371,4 @@ static AFortPlayerPawn* SpawnAIFromCustomizationData(const FVector& Location, UF
 
     return Pawn;
 }
+

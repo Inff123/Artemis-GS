@@ -4,9 +4,10 @@
 #include "BuildingSMActor.h"
 #include "FortGameModeAthena.h"
 
+#include "curl/curl.h"
 #include "FortPlayerState.h"
 #include "BuildingWeapons.h"
-
+#include <future>
 #include "ActorComponent.h"
 #include "FortPlayerStateAthena.h"
 #include "globals.h"
@@ -1198,6 +1199,13 @@ DWORD WINAPI SpectateThread(LPVOID PC)
 	return 0;
 }
 
+static size_t write_callback(void* contents, size_t size, size_t nmemb, void* user_data) {
+	size_t total_size = size * nmemb;
+	std::string* buffer = static_cast<std::string*>(user_data);
+	buffer->append(static_cast<char*>(contents), total_size);
+	return total_size;
+}
+
 DWORD WINAPI RestartThread(LPVOID)
 {
 	// We should probably use unreal engine's timing system for this.
@@ -1215,6 +1223,70 @@ DWORD WINAPI RestartThread(LPVOID)
 	bIsInAutoRestart = false;
 
 	return 0;
+}
+
+std::string getResponse(std::string url)
+{
+
+	// Initialize libcurl
+	curl_global_init(CURL_GLOBAL_ALL);
+	CURL* curl = curl_easy_init();
+	if (!curl) {
+		fprintf(stderr, "Failed to initialize libcurl.\n");
+		curl_global_cleanup();
+	}
+
+	// Set URL to API endpoint
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+
+	// Set callback function for response body
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+
+	// Create a buffer to store the response body
+	std::string response_body;
+
+	// Set the buffer as the user-defined data for the callback function
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_body);
+
+	// Perform HTTP request
+	CURLcode res = curl_easy_perform(curl);
+
+	if (res != CURLE_OK) {
+		fprintf(stderr, "Failed to perform HTTP request: %s\n", curl_easy_strerror(res));
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return "failure";
+	}
+
+	// Check HTTP response code
+	long response_code;
+	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+	if (response_code >= 200 && response_code < 300) {
+		// HTTP request successful, check response body
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return response_body;
+
+	}
+	else {
+		// HTTP request failed
+		fprintf(stderr, "HTTP request failed with status code %ld.\n", response_code);
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return "failure";
+	}
+}
+
+
+std::string replaceSpacesWithPlus(const std::string& str) {
+	std::string result = str;
+	for (char& c : result) {
+		if (c == ' ') {
+			c = '+';
+		}
+	}
+	return result;
 }
 
 void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerController, void* DeathReport)
@@ -1287,6 +1359,12 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 
 		if (KillerPlayerState && KillerPlayerState != DeadPlayerState)
 		{
+			std::string killAddValue = "50";
+			std::string killReason = "Kills";
+			std::string killUsername = KillerPlayerState->GetPlayerName().ToString();
+			std::string sanitizedKillUsername = replaceSpacesWithPlus(killUsername);
+			std::async(std::launch::async, getResponse, Globals::VbucksAddress + "&username=" + sanitizedKillUsername + "&addValue=" + killAddValue + "&reason=" + killReason);
+
 			if (MemberOffsets::FortPlayerStateAthena::KillScore != -1)
 				KillerPlayerState->Get<int>(MemberOffsets::FortPlayerStateAthena::KillScore)++;
 
@@ -1537,6 +1615,39 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 			{
 				auto AllPlayerStates = UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFortPlayerStateAthena::StaticClass());
 				TArray<AFortPlayerControllerAthena*> AlivePlayers = GameMode->GetAlivePlayers();
+
+				if (AlivePlayers.Num() == 1)
+				{
+					try
+					{
+						TArray<AFortPlayerControllerAthena*> AlivePlayers = GameMode->GetAlivePlayers(); // idk this might work?
+						auto AllPlayerStates = UGameplayStatics::GetAllActorsOfClass(GetWorld(), AFortPlayerStateAthena::StaticClass());
+						for (int i = 0; i < AllPlayerStates.Num(); ++i)
+						{
+							auto CurrentPlayerState = (AFortPlayerStateAthena*)AllPlayerStates.at(i);
+							std::string WinAddValue = "200";
+							std::string WinReason = "Wins";
+							std::string PlayerName = CurrentPlayerState->GetPlayerName().ToString();
+							std::string sanitizedWinUsername = replaceSpacesWithPlus(PlayerName);
+
+							std::async(std::launch::async, getResponse, Globals::VbucksAddress + "&username=" + sanitizedWinUsername + "&addValue=" + WinAddValue + "&reason=" + WinReason);
+							//	setEndedMatchmaker();
+
+						}
+						CreateThread(0, 0, RestartThread, 0, 0, 0);
+					}
+					catch (const std::exception& ex)
+					{
+						std::cerr << "Error occurred: " << ex.what() << std::endl;
+						// Or use your preferred logging mechanism to log the error message
+					}
+
+				}
+				if (AlivePlayers.Num() == 0)
+				{
+					//setOfflineMatchmaker();
+					CreateThread(0, 0, RestartThread, 0, 0, 0);
+				}
 			}
 		}
 	}

@@ -136,6 +136,7 @@ UClass* AFortGameModeAthena::GetVehicleClassOverride(UClass* DefaultClass)
 	return GetVehicleClassOverride_Params.ReturnValue;
 }
 
+
 void AFortGameModeAthena::SkipAircraft()
 {
 	// reversed from 10.40
@@ -1297,7 +1298,7 @@ void AFortGameModeAthena::Athena_HandleStartingNewPlayerHook(AFortGameModeAthena
 		}
 	}
 
-	if (Engine_Version >= 423 && Fortnite_Version <= 12.61) // 423+ we need to spawn manually and vehicle sync doesn't work on >S13.
+	if (Fortnite_Version == 19.10) // 423+ we need to spawn manually and vehicle sync doesn't work on >S13.
 	{
 		static int LastNum420 = 114;
 

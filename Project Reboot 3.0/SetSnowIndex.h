@@ -4,6 +4,7 @@
 
 #include "globals.h"
 #include <functional>
+#include "Structs.h"
 
 namespace Helper
 {
@@ -13,7 +14,6 @@ namespace Helper
 	static void DestroyActor(UObject* Actor) { static auto fn = FindObject<UFunction>("/Script/Engine.Actor.K2_DestroyActor"); Actor->ProcessEvent(fn); }
 
 	
-
 
 
 	UObject* GetGameMode();
