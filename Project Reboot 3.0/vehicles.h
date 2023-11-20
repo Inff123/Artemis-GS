@@ -106,6 +106,7 @@ static inline void ServerVehicleUpdate(UObject* Context, FFrame& Stack, void* Re
 	Mesh->ProcessEvent(SetPhysicsAngularVelocityFn, &UPrimitiveComponent_SetPhysicsAngularVelocity_Params);
 }
 
+/*
 static inline void AddVehicleHook()
 {
 	static auto FortAthenaVehicleDefault = FindObject(L"/Script/FortniteGame.Default__FortAthenaVehicle");
@@ -115,14 +116,15 @@ static inline void AddVehicleHook()
 	{
 		Hooking::MinHook::Hook(FortPhysicsPawnDefault, FindObject<UFunction>(L"/Script/FortniteGame.FortPhysicsPawn.ServerMove") ?
 			FindObject<UFunction>(L"/Script/FortniteGame.FortPhysicsPawn.ServerMove") : FindObject<UFunction>(L"/Script/FortniteGame.FortPhysicsPawn.ServerUpdatePhysicsParams"),
-			ServerVehicleUpdate, nullptr, false, true);
+			//ServerVehicleUpdate, nullptr, false, true);
 	}
 	else
 	{
 		Hooking::MinHook::Hook(FortAthenaVehicleDefault, FindObject<UFunction>(L"/Script/FortniteGame.FortAthenaVehicle.ServerUpdatePhysicsParams"),
-			ServerVehicleUpdate, nullptr, false, true);
+			//ServerVehicleUpdate, nullptr, false, true);
 	}
 }
+*/
 
 struct FVehicleWeightedDef
 {
@@ -150,7 +152,7 @@ public:
 
 static inline AActor* SpawnVehicleFromSpawner(AActor* VehicleSpawner)
 {
-	bool bDebugSpawnVehicles = false;
+	bool bDebugSpawnVehicles = true;
 
 	auto GameMode = Cast<AFortGameModeAthena>(GetWorld()->GetGameMode());
 

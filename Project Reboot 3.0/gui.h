@@ -789,7 +789,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Rocket_Athena_VR_Ore_T03.WID_Launcher_Rocket_Athena_VR_Ore_T03");
 			break;
 		case 4:
-			Other = FindObject<UFortItemDefinition>(L"/ClashGameplay/Gameplay/Clash/Clash_Red/WID_Clash_Red_Athena.WID_Clash_Red_Athena");
+			Other = FindObject<UFortItemDefinition>(L"/ParallelGameplay/Items/WestSausage/WID_WestSausage_Parallel.WID_WestSausage_Parallel");
 			break;
 		case 5:
 			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Military_Athena_SR_Ore_T03.WID_Launcher_Military_Athena_SR_Ore_T03");

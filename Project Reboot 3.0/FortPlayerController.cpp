@@ -471,6 +471,7 @@ void AFortPlayerController::ServerAttemptInteractHook(UObject* Context, FFrame* 
 	}
 	else if (ReceivingActor->IsA(FortAthenaVehicleClass))
 	{
+		
 		auto Vehicle = (AFortAthenaVehicle*)ReceivingActor;
 		ServerAttemptInteractOriginal(Context, Stack, Ret);
 		
