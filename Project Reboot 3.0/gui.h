@@ -407,7 +407,7 @@ static inline void MainTabs()
 			bInformationTab = false;
 			ImGui::EndTabItem();
 		}
-		
+
 
 #if 0
 		if (bannedStream.is_open() && ImGui::BeginTabItem("Unban")) // skunked
@@ -536,7 +536,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 	{
 		Sleep(1000 / MaxTickRate);
 	}
-	
+
 	static auto SafeZoneLocationsOffset = GameMode->GetOffset("SafeZoneLocations");
 	const TArray<FVector>& SafeZoneLocations = GameMode->Get<TArray<FVector>>(SafeZoneLocationsOffset);
 
@@ -547,11 +547,11 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 		return 0;
 
 	}
-	
+
 
 
 	const FVector ZoneCenterLocation = SafeZoneLocations.at(3);
-	
+
 	FVector LocationToStartAircraft = ZoneCenterLocation;
 	LocationToStartAircraft.Z += 10000;
 
@@ -559,7 +559,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 
 	float DropStartTime = GameState->GetServerWorldTimeSeconds() + 5.f;
 	float FlightSpeed = 0.0f;
-	
+
 	for (int i = 0; i < Aircrafts.size(); ++i)
 	{
 		auto CurrentAircraft = Aircrafts.at(i);
@@ -620,7 +620,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 	{
 		Sleep(1000 / MaxTickRate);
 	}
-	
+
 	static auto World_NetDriverOffset = GetWorld()->GetOffset("NetDriver");
 	auto WorldNetDriver = GetWorld()->Get<UNetDriver*>(World_NetDriverOffset);
 	auto& ClientConnections = WorldNetDriver->GetClientConnections();
@@ -1196,7 +1196,7 @@ static inline void MainUI()
 					}
 				}
 
-				
+
 				if (!bIsInAutoRestart && Engine_Version < 503 && ImGui::Button("Restart"))
 				{
 					if (Engine_Version < 503)
@@ -1839,14 +1839,14 @@ static inline void PregameUI()
 	{
 		ImGui::Checkbox("FixLategame", &Globals::b1910Lategame);
 	}
-	
+
 	if (Addresses::SetZoneToIndex)
 	{
 		bool bWillBeLategame = Globals::bLateGame.load();
 		ImGui::Checkbox("Lategame", &bWillBeLategame);
 		SetIsLategame(bWillBeLategame);
 	}
-	
+
 
 	if (HasEvent())
 	{
@@ -1864,7 +1864,7 @@ static inline void PregameUI()
 
 		ImGui::SliderInt("Seconds until load into map", &SecondsUntilTravel, 1, 100);
 	}
-	
+
 	/*
 	if (!Globals::bCreative)
 		ImGui::InputText("Playlist", &PlaylistName);
