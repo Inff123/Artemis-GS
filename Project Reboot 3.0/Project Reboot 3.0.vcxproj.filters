@@ -989,9 +989,6 @@
     <ClInclude Include="weather.h">
       <Filter>Reboot\Public</Filter>
     </ClInclude>
-    <ClInclude Include="webhookHandler.h">
-      <Filter>Reboot\Public</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">
