@@ -846,7 +846,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			Bots::SpawnBotsAtPlayerStarts(AmountOfBotsToSpawn);
 		}
 
-		UptimeWebHook.send_message(std::format("Server up! {} {}", "Flipped Is Skunky and mstreem is A ball tickler")); // PlaylistName sometimes isn't always what we use!
+		UptimeWebHook.send_message(std::format("Server up! {} {}")); // PlaylistName sometimes isn't always what we use!
 
 		if (std::floor(Fortnite_Version) == 5)
 		{
