@@ -10,6 +10,8 @@
 class UClass;
 class UFunction;
 
+#define INL __forceinline
+
 struct FGuid
 {
 	unsigned int A;
@@ -57,6 +59,7 @@ public:
 	std::string GetFullName();
 	UObject* GetOuter() const { return OuterPrivate; }
 	FName GetFName() const { return NamePrivate; }
+
 
 	class UPackage* GetOutermost() const;
 	bool IsA(class UStruct* Other);
@@ -114,6 +117,8 @@ public:
 	void AddToRoot();
 	bool IsValidLowLevel();
 	FORCEINLINE bool IsPendingKill() const;
+
+	
 
 	// static class UClass* StaticClass();
 };

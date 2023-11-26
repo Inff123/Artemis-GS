@@ -989,6 +989,9 @@
     <ClInclude Include="weather.h">
       <Filter>Reboot\Public</Filter>
     </ClInclude>
+    <ClInclude Include="SkunkyRestart.h">
+      <Filter>Reboot\Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Engine">

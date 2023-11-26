@@ -471,6 +471,7 @@
     <ClInclude Include="SetSnowIndex.h" />
     <ClInclude Include="SharedPointer.h" />
     <ClInclude Include="SharedPointerInternals.h" />
+    <ClInclude Include="SkunkyRestart.h" />
     <ClInclude Include="SoftObjectPath.h" />
     <ClInclude Include="SoftObjectPtr.h" />
     <ClInclude Include="Sort.h" />

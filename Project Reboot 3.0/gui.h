@@ -45,6 +45,7 @@
 #include "Helper.h"
 #include "SetSnowIndex.h"
 
+
 #define GAME_TAB 1
 #define PLAYERS_TAB 2
 #define GAMEMODE_TAB 3
@@ -90,6 +91,7 @@ extern inline bool bEnableRebooting = true;
 extern inline bool bEngineDebugLogs = false;
 extern inline bool bStartedBus = false;
 extern inline int AmountOfHealthSiphon = 50;
+extern inline bool bRestarting = false;
 
 // THE BASE CODE IS FROM IMGUI GITHUB
 
@@ -159,6 +161,27 @@ static inline void Restart() // todo move?
 
 	// UGameplayStatics::OpenLevel(GetWorld(), UKismetStringLibrary::Conv_StringToName(LevelA), true, FString());
 }
+
+/*
+static inline void SkunkyRestart()
+{
+	bStartedBus = false;
+	Globals::bStartedListening = false;
+	bRestarting = true;
+	
+	auto afdau = [&](UObject* Controller) {
+		static auto ClientReturnToMainMenu = Controller->Function("ClientReturnToMainMenu");
+
+		if (ClientReturnToMainMenu)
+			Controller->ProcessEvent(ClientReturnToMainMenu, &Reason);
+	};
+
+	Skunked::LoopConnections(afdau, true);
+
+	//Skunked Forever I will work On this at some point but I give up
+	
+}
+*/
 
 static inline std::string wstring_to_utf8(const std::wstring& str)
 {
@@ -764,7 +787,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 			Shields = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Consumables/GasGrenade/Athena_GasGrenade.Athena_GasGrenade");
 			break;
 		case 4:
-			Shields = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Consumables/ShieldSmall/Athena_ShieldSmall.Athena_ShieldSmall");
+			Shields = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Consumables/SuperTowerGrenade/Levels/GiftBox/HolidayGiftBox/Athena_HolidayGiftBox.Athena_HolidayGiftBox");
 			break;
 		case 5:
 			Shields = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Consumables/ShieldSmall/Athena_ShieldSmall.Athena_ShieldSmall");
@@ -786,19 +809,19 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Hook_Gun_VR_Ore_T03.WID_Hook_Gun_VR_Ore_T03");
 			break;
 		case 1:
-			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Military_Athena_VR_Ore_T03.WID_Launcher_Military_Athena_VR_Ore_T03");
+			Other = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 2:
-			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Grenade_Athena_R_Ore_T03.WID_Launcher_Grenade_Athena_R_Ore_T03");
+			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WaffleTruck/WID_WaffleTruck_ChillerLauncher.WID_WaffleTruck_ChillerLauncher");
 			break;
 		case 3:
-			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Rocket_Athena_VR_Ore_T03.WID_Launcher_Rocket_Athena_VR_Ore_T03");
+			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Consumables/ChillBronco/Athena_ChillBronco_NPC.Athena_ChillBronco_NPC");
 			break;
 		case 4:
-			Other = FindObject<UFortItemDefinition>(L"/ParallelGameplay/Items/WestSausage/AGID_WestSausage_Parallel.AGID_WestSausage_Parallel");
+			Other = FindObject<UFortItemDefinition>(L"/ParallelGameplay/Items/WestSausage/WID_WestSausage_Parallel_L_M.WID_WestSausage_Parallel_L_M");
 			break;
 		case 5:
-			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Military_Athena_SR_Ore_T03.WID_Launcher_Military_Athena_SR_Ore_T03");
+			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Gameplay/Lotus/Mustache/AGID_Lotus_Mustache.AGID_Lotus_Mustache");
 			break;
 		case 6:
 			Other = FindObject<UFortItemDefinition>(L"/CorruptionGameplay/Gameplay/Items/Consumables/SpicySoda/WID_Athena_SpicySoda.WID_Athena_SpicySoda");
@@ -855,8 +878,8 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 		WorldInventory->AddItem(Shotgun, nullptr, 1);
 		WorldInventory->AddItem(Sniper, nullptr, 1);
 		WorldInventory->AddItem(Ar, nullptr, 1);
-		WorldInventory->AddItem(Other, nullptr, 6);
-		WorldInventory->AddItem(Shields, nullptr, 1);
+		WorldInventory->AddItem(Other, nullptr, 1);
+		WorldInventory->AddItem(Shields, nullptr, 6);
 		WorldInventory->AddItem(TrapPlaced, nullptr, 3);
 		WorldInventory->AddItem(Shells, nullptr, 999);
 		WorldInventory->AddItem(Medium, nullptr, 999);
@@ -1131,6 +1154,7 @@ static inline void MainUI()
 			if (bLoaded)
 			{
 				StaticUI();
+
 
 				if (!bStartedBus)
 				{
