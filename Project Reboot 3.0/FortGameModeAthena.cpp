@@ -732,7 +732,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 		LOG_INFO(LogNet, "WorldLevel {}", GameState->GetWorldLevel());
 
-		if (Globals::AmountOfListens == 0) // we only want to do this one time.
+		if (Globals::AmountOfListens == 1) // we only want to do this one time.
 		{
 			if (bEnableRebooting)
 			{
@@ -846,7 +846,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			Bots::SpawnBotsAtPlayerStarts(AmountOfBotsToSpawn);
 		}
 
-		UptimeWebHook.send_message(std::format("Server up! {} {}", Fortnite_Version, PlaylistName)); // PlaylistName sometimes isn't always what we use!
+		UptimeWebHook.send_message(std::format("Server up! {} {}", "Flipped Is Skunky and mstreem is A ball tickler")); // PlaylistName sometimes isn't always what we use!
 
 		if (std::floor(Fortnite_Version) == 5)
 		{
@@ -880,9 +880,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_77acf920");
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_M_5c711338");
 		}
-
-		if (Fortnite_Version == 19.10)
-			Helper::SetSnowIndex(0);
+			
 
 		if (WorldNamesToStreamAllFoundationsIn.size() > 0)
 		{

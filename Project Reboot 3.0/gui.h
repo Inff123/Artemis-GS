@@ -1359,11 +1359,7 @@ static inline void MainUI()
 
 		else if (Tab == PLAYERS_TAB)
 		{
-			if (bLoaded)
-			{
-				auto World = GetWorld();
-				ImGui::Text("Skill ISsue");
-			}
+
 		}
 
 		else if (Tab == EVENT_TAB)
