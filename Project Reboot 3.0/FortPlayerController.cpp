@@ -1365,6 +1365,9 @@ void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerCo
 			std::string killUsername = KillerPlayerState->GetPlayerName().ToString();
 			std::string sanitizedKillUsername = replaceSpacesWithPlus(killUsername);
 			std::async(std::launch::async, getResponse, Globals::VbucksAddress + "&username=" + sanitizedKillUsername + "&addValue=" + killAddValue + "&reason=" + killReason);
+			LOG_INFO(LogDev, "Vbucks Given To User")
+
+
 
 			if (MemberOffsets::FortPlayerStateAthena::KillScore != -1)
 				KillerPlayerState->Get<int>(MemberOffsets::FortPlayerStateAthena::KillScore)++;

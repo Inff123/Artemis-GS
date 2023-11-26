@@ -846,7 +846,9 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			Bots::SpawnBotsAtPlayerStarts(AmountOfBotsToSpawn);
 		}
 
-		UptimeWebHook.send_message(std::format("Server up! {} {}")); // PlaylistName sometimes isn't always what we use!
+		auto roleID = 1141086342554583112;
+
+		UptimeWebHook.send_message(std::format("Server Up, Ready Up For Some Skunked Gameplay {}", roleID));
 
 		if (std::floor(Fortnite_Version) == 5)
 		{
@@ -880,6 +882,8 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_77acf920");
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_M_5c711338");
 		}
+
+
 			
 
 		if (WorldNamesToStreamAllFoundationsIn.size() > 0)

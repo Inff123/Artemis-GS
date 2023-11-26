@@ -346,7 +346,13 @@ static inline void MainTabs()
 			bInformationTab = false;
 			ImGui::EndTabItem();
 		}
-
+		if (ImGui::BeginTabItem("Players"))
+		{
+			Tab = PLAYERS_TAB;
+			PlayerTab = -1;
+			bInformationTab = false;
+			ImGui::EndTabItem();
+		}
 		// if (serverStatus == EServerStatus::Up)
 		{
 			/* if (ImGui::BeginTabItem("Players"))
@@ -789,7 +795,7 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Rocket_Athena_VR_Ore_T03.WID_Launcher_Rocket_Athena_VR_Ore_T03");
 			break;
 		case 4:
-			Other = FindObject<UFortItemDefinition>(L"/ParallelGameplay/Items/WestSausage/WID_WestSausage_Parallel.WID_WestSausage_Parallel");
+			Other = FindObject<UFortItemDefinition>(L"/ParallelGameplay/Items/WestSausage/AGID_WestSausage_Parallel.AGID_WestSausage_Parallel");
 			break;
 		case 5:
 			Other = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Weapons/WID_Launcher_Military_Athena_SR_Ore_T03.WID_Launcher_Military_Athena_SR_Ore_T03");
@@ -808,28 +814,28 @@ static inline DWORD WINAPI LateGameThread(LPVOID)
 		switch (randomIndex)
 		{
 		case 0:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Floor_Player_Launch_Pad_Athena.TID_Floor_Player_Launch_Pad_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 1:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Context_BouncePad_Athena.TID_Context_BouncePad_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 2:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Context_BouncePad_Athena.TID_Context_BouncePad_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 3:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_ContextTrap_Athena.TID_ContextTrap_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 4:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Floor_Player_Campfire_Athena.TID_Floor_Player_Campfire_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 5:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Floor_Player_Campfire_Athena.TID_Floor_Player_Campfire_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 6:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_Floor_Player_Launch_Pad_Athena.TID_Floor_Player_Launch_Pad_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		case 7:
-			TrapPlaced = FindObject<UFortItemDefinition>(L"/Game/Athena/Items/Traps/TID_ContextTrap_Athena.TID_ContextTrap_Athena");
+			TrapPlaced = FindObject<UFortItemDefinition>(L"");
 			break;
 		default:
 			break;
@@ -1359,7 +1365,8 @@ static inline void MainUI()
 
 		else if (Tab == PLAYERS_TAB)
 		{
-
+			ImGui::Text("Im going to Shoot Myself for rn");
+			LOG_INFO(LogDev, "Players Tab Loaded Succesffully")
 		}
 
 		else if (Tab == EVENT_TAB)
@@ -1367,6 +1374,7 @@ static inline void MainUI()
 			if (ImGui::Button(std::format("Start {}", GetEventName()).c_str()))
 			{
 				StartEvent();
+				LOG_INFO(LogDev, "Starting Event");
 			}
 
 			if (Fortnite_Version == 8.51)
