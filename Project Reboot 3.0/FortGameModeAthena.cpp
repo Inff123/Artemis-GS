@@ -732,7 +732,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 		LOG_INFO(LogNet, "WorldLevel {}", GameState->GetWorldLevel());
 
-		if (Globals::AmountOfListens == 1) // we only want to do this one time.
+		if (Globals::AmountOfListens == 0) // we only want to do this one time.
 		{
 			if (bEnableRebooting)
 			{
@@ -749,6 +749,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 					if (S19Patch)
 					{
 						PatchByte(S19Patch, 0x75);
+						LOG_INFO(LogDev, "Applied Season19Patch");
 					}
 					else
 					{
@@ -879,6 +880,9 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_77acf920");
 			WorldNamesToStreamAllFoundationsIn.push_back("/Temp/Game/Athena/Maps/POI/Athena_POI_CommunityPark_003_M_5c711338");
 		}
+
+		if (Fortnite_Version == 19.10)
+			Helper::SetSnowIndex(0);
 
 		if (WorldNamesToStreamAllFoundationsIn.size() > 0)
 		{

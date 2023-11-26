@@ -1162,6 +1162,7 @@ static inline void MainUI()
 					if (ImGui::Button("Set Snow Phase"))
 					{
 						Helper::SetSnowIndex(SnowIndex);
+						LOG_INFO(LogDev, "SnowIndex Value Changed To", SnowIndex);
 					}
 				}
 				if (ImGui::Button("New"))
@@ -1358,7 +1359,11 @@ static inline void MainUI()
 
 		else if (Tab == PLAYERS_TAB)
 		{
-
+			if (bLoaded)
+			{
+				auto World = GetWorld();
+				ImGui::Text("Skill ISsue");
+			}
 		}
 
 		else if (Tab == EVENT_TAB)
