@@ -90,7 +90,7 @@ extern inline int AmountOfBotsToSpawn = 0;
 extern inline bool bEnableRebooting = true;
 extern inline bool bEngineDebugLogs = false;
 extern inline bool bStartedBus = false;
-extern inline int AmountOfHealthSiphon = 50;
+extern inline int AmountOfHealthSiphon = 200;
 extern inline bool bRestarting = false;
 
 // THE BASE CODE IS FROM IMGUI GITHUB
