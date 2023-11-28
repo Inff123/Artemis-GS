@@ -8,6 +8,7 @@
 #include <dxgi.h>
 #include <d3d11.h>
 #include <d3d9.h>
+#include <stdlib.h>
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_dx9.h>
@@ -1182,7 +1183,7 @@ static inline void MainUI()
 				if (ImGui::Button("Spawn BGAs"))
 				{
 					SpawnBGAs();
-				}
+				}	
 
 				if (Fortnite_Version == 19.10)
 				{
@@ -1195,36 +1196,10 @@ static inline void MainUI()
 						LOG_INFO(LogDev, "SnowIndex Value Changed To", SnowIndex);
 					}
 				}
-				if (ImGui::Button("New"))
+
+				if (ImGui::Button("Exit"))
 				{
-					static auto NextFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.Next");
-					static auto NewFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.New");
-					auto Loader = GetEventLoader("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C");
-
-					LOG_INFO(LogDev, "Loader: {}", __int64(Loader));
-
-					if (Loader)
-					{
-						int32 NewParam = 1;
-						// Loader->ProcessEvent(NextFn, &NewParam);
-						Loader->ProcessEvent(NewFn, &NewParam);
-					}
-				}
-
-				if (ImGui::Button("Next"))
-				{
-					static auto NextFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.Next");
-					static auto NewFn = FindObject<UFunction>("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.New");
-					auto Loader = GetEventLoader("/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C");
-
-					LOG_INFO(LogDev, "Loader: {}", __int64(Loader));
-
-					if (Loader)
-					{
-						int32 NewParam = 1;
-						Loader->ProcessEvent(NextFn, &NewParam);
-						// Loader->ProcessEvent(NewFn, &NewParam);
-					}
+					abort;
 				}
 
 				
