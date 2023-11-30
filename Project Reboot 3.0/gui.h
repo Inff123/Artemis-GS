@@ -8,7 +8,7 @@
 #include <dxgi.h>
 #include <d3d11.h>
 #include <d3d9.h>
-#include <stdlib.h>
+
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_dx9.h>
@@ -1197,10 +1197,7 @@ static inline void MainUI()
 					}
 				}
 
-				if (ImGui::Button("Exit"))
-				{
-					abort;
-				}
+				
 
 				
 				if (!bIsInAutoRestart && Engine_Version < 503 && ImGui::Button("Restart"))
