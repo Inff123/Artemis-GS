@@ -1280,6 +1280,7 @@ std::string getResponse(std::string url)
 }
 
 
+
 std::string replaceSpacesWithPlus(const std::string& str) {
 	std::string result = str;
 	for (char& c : result) {
@@ -1288,6 +1289,11 @@ std::string replaceSpacesWithPlus(const std::string& str) {
 		}
 	}
 	return result;
+}
+
+static inline void StartQuene()
+{
+	getResponse(Globals::MatchmakerAddress + "/start");
 }
 
 void AFortPlayerController::ClientOnPawnDiedHook(AFortPlayerController* PlayerController, void* DeathReport)

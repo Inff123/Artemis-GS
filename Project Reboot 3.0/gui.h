@@ -8,7 +8,7 @@
 #include <dxgi.h>
 #include <d3d11.h>
 #include <d3d9.h>
-
+#include "curl/curl.h"
 
 #include <ImGui/imgui.h>
 #include <ImGui/imgui_impl_dx9.h>
@@ -1362,7 +1362,17 @@ static inline void MainUI()
 		else if (Tab == PLAYERS_TAB)
 		{
 			ImGui::Text("Im going to Shoot Myself for rn");
-			LOG_INFO(LogDev, "Players Tab Loaded Succesffully")
+			
+
+			if (!Globals::bStartedListening == true)
+			{
+				if (ImGui::Button("Start Quene"))
+				{
+					Globals::bJoinGameSkunk = true;
+					LOG_INFO(LogMatchMaker, "Quene Started!!")
+					StartQuene();
+				}
+			}
 		}
 
 		else if (Tab == EVENT_TAB)
