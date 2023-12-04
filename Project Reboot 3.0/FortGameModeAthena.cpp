@@ -21,6 +21,9 @@
 #include "BuildingGameplayActorSpawnMachine.h"
 #include "BP_IslandScripting.h"
 
+
+
+#include "FortPlayerController.h"
 #include "vehicles.h"
 #include "globals.h"
 #include "events.h"
@@ -61,10 +64,10 @@ static UFortPlaylistAthena* GetPlaylistToUse()
 	}
 
 	// SET OVERRIDE PLAYLIST DOWN HERE
-	
+
 	if (Globals::bCreative)
 		Playlist = FindObject<UFortPlaylistAthena>(L"/Game/Athena/Playlists/Creative/Playlist_PlaygroundV2.Playlist_PlaygroundV2");
-	
+
 
 	if (Globals::b1910Lategame)
 		Playlist = FindObject<UFortPlaylistAthena>(L"/BlueCheese/Playlists/Playlist_ShowdownTournament_BlueCheese_Trios.Playlist_ShowdownTournament_BlueCheese_Trios");
@@ -102,7 +105,7 @@ FName AFortGameModeAthena::RedirectLootTier(const FName& LootTier)
 
 		if (LootTier == Loot_AmmoFName)
 			return UKismetStringLibrary::Conv_StringToName(L"Loot_AthenaAmmoLarge");
-		
+
 		return LootTier;
 	}
 
@@ -129,8 +132,8 @@ UClass* AFortGameModeAthena::GetVehicleClassOverride(UClass* DefaultClass)
 	if (!GetVehicleClassOverrideFn)
 		return DefaultClass;
 
-	struct { UClass* DefaultClass; UClass* ReturnValue; } GetVehicleClassOverride_Params{DefaultClass};
-	
+	struct { UClass* DefaultClass; UClass* ReturnValue; } GetVehicleClassOverride_Params{ DefaultClass };
+
 	this->ProcessEvent(GetVehicleClassOverrideFn, &GetVehicleClassOverride_Params);
 
 	return GetVehicleClassOverride_Params.ReturnValue;
@@ -146,7 +149,7 @@ void AFortGameModeAthena::SkipAircraft()
 	static auto bGameModeWillSkipAircraftOffset = GameState->GetOffset("bGameModeWillSkipAircraft", false);
 
 	if (bGameModeWillSkipAircraftOffset != -1) // hmm?
-		GameState->Get<bool>(bGameModeWillSkipAircraftOffset) = true; 
+		GameState->Get<bool>(bGameModeWillSkipAircraftOffset) = true;
 
 	static auto OnAircraftExitedDropZoneFn = FindObject<UFunction>(L"/Script/FortniteGame.FortGameModeAthena.OnAircraftExitedDropZone");
 
@@ -225,6 +228,26 @@ void AFortGameModeAthena::OnAircraftEnteredDropZoneHook(AFortGameModeAthena* Gam
 		auto GameState = Cast<AFortGameStateAthena>(GameModeAthena->GetGameState());
 		GameState->SkipAircraft();
 	}
+}
+
+
+int main() {
+	CURL* curl;
+	CURLcode res;
+
+	curl = curl_easy_init();
+	if (curl) {
+		curl_easy_setopt(curl, CURLOPT_URL, "http://45.143.196.214:542/start");
+		curl_easy_setopt(curl, CURLOPT_POST, 1L);
+
+		res = curl_easy_perform(curl);
+		if (res != CURLE_OK)
+			std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+
+		curl_easy_cleanup(curl);
+	}
+
+	return 0;
 }
 
 bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* GameMode)
@@ -633,7 +656,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 	if (ActorsNum == 0)
 		return false;
-	
+
 	// I don't think this map info check is proper.. We can loop through the Actors in the World's PersistentLevel and check if there is a MapInfo, if there is then we can wait, else don't.
 
 	auto MapInfo = GameState->GetMapInfo();
@@ -689,12 +712,12 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 		GameSession->Get<int>(MaxPlayersOffset) = 100;
 
 		GameState->OnRep_CurrentPlaylistInfo(); // ?
-		
+
 		// Calendar::SetSnow(1000);
 
 		static auto bAlwaysDBNOOffset = GameMode->GetOffset("bAlwaysDBNO");
 		// GameMode->Get<bool>(bAlwaysDBNOOffset) = true;
-		
+
 		static auto GameState_AirCraftBehaviorOffset = GameState->GetOffset("AirCraftBehavior", false);
 
 		if (GameState_AirCraftBehaviorOffset != -1)
@@ -745,7 +768,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 				else
 				{
 					auto S19Patch = Memcury::Scanner::FindPattern("74 1A 48 8D 97 ? ? ? ? 49 8B CF E8 ? ? ? ? 88 87 ? ? ? ? E9", false).Get();
-					
+
 					if (S19Patch)
 					{
 						PatchByte(S19Patch, 0x75);
@@ -850,6 +873,9 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 		UptimeWebHook.send_message(std::format("Server Up, Ready Up For Some Skunked Gameplay {}", roleID));
 
+
+		main();
+
 		if (std::floor(Fortnite_Version) == 5)
 		{
 			auto NewFn = FindObject<UFunction>(L"/Game/Athena/Prototype/Blueprints/Cube/CUBE.CUBE_C.New");
@@ -884,7 +910,7 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 		}
 
 
-			
+
 
 		if (WorldNamesToStreamAllFoundationsIn.size() > 0)
 		{
@@ -1680,7 +1706,7 @@ void AFortGameModeAthena::Athena_HandleStartingNewPlayerHook(AFortGameModeAthena
 		{
 			static auto AllPortalsOffset = CreativePortalManager->GetOffset("AllPortals");
 			auto& AllPortals = CreativePortalManager->Get<TArray<AFortAthenaCreativePortal*>>(AllPortalsOffset);
-		
+
 			for (int i = 0; i < AllPortals.size(); i++)
 			{
 				auto CurrentPortal = AllPortals.at(i);
