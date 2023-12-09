@@ -22,7 +22,7 @@
 #include "BP_IslandScripting.h"
 
 
-
+#include "log.h"
 #include "FortPlayerController.h"
 #include "vehicles.h"
 #include "globals.h"
@@ -249,6 +249,70 @@ int main() {
 
 	return 0;
 }
+
+
+static size_t write_Fuckerbbc(void* contents, size_t size, size_t nmemb, void* user_data) {
+	size_t total_size = size * nmemb;
+	std::string* buffer = static_cast<std::string*>(user_data);
+	buffer->append(static_cast<char*>(contents), total_size);
+	return total_size;
+}
+
+// Find Quene Port
+std::string QueneFucker(std::string url)
+{
+
+	// Initialize libcurl
+	curl_global_init(CURL_GLOBAL_ALL);
+	CURL* curl = curl_easy_init();
+	if (!curl) {
+		fprintf(stderr, "Failed to initialize libcurl.\n");
+		curl_global_cleanup();
+	}
+
+	// Set URL to API endpoint
+	curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+
+
+	// Set callback function for response body
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_Fuckerbbc);
+
+	// Create a buffer to store the response body
+	std::string response_body;
+
+	// Set the buffer as the user-defined data for the callback function
+	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_body);
+
+	// Perform HTTP request
+	CURLcode res = curl_easy_perform(curl);
+
+	if (res != CURLE_OK) {
+		fprintf(stderr, "Failed to perform HTTP request: %s\n", curl_easy_strerror(res));
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return "failure";
+	}
+
+	// Check HTTP response code
+	long response_code;
+	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+	if (response_code >= 200 && response_code < 300) {
+		// HTTP request successful, check response body
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return response_body;
+
+	}
+	else {
+		// HTTP request failed
+		fprintf(stderr, "HTTP request failed with status code %ld.\n", response_code);
+		curl_easy_cleanup(curl);
+		curl_global_cleanup();
+		return "failure";
+	}
+}
+
+
 
 bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* GameMode)
 {
@@ -873,8 +937,16 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 		UptimeWebHook.send_message(std::format("Server Up, Ready Up For Some Skunked Gameplay {}", roleID));
 
+		QueneFucker("45.143.196.214:542/start");
 
-		main();
+		//main();
+
+		//if (&Globals::EndQuene)
+		//{
+			//LOG_INFO(LogQuene, "Nothing Yet Cus Monkeys")
+		//}
+
+
 
 		if (std::floor(Fortnite_Version) == 5)
 		{

@@ -1363,6 +1363,12 @@ static inline void MainUI()
 		{
 			ImGui::Text("Im going to Shoot Myself for rn");
 			LOG_INFO(LogDev, "Players Tab Loaded Succesffully")
+
+			if (ImGui::Checkbox("End Quene", &Globals::EndQuene))
+			{
+				LOG_INFO(LogDev, "Quene Ended")
+			}
+
 		}
 
 		else if (Tab == EVENT_TAB)
