@@ -231,7 +231,7 @@ void AFortGameModeAthena::OnAircraftEnteredDropZoneHook(AFortGameModeAthena* Gam
 }
 
 
-int main() {
+int QueneISSKUNKED() {
 	CURL* curl;
 	CURLcode res;
 
@@ -937,9 +937,9 @@ bool AFortGameModeAthena::Athena_ReadyToStartMatchHook(AFortGameModeAthena* Game
 
 		UptimeWebHook.send_message(std::format("Server Up, Ready Up For Some Skunked Gameplay {}", roleID));
 
-		QueneFucker("45.143.196.214:542/start");
+		Sleep(5000);
 
-		//main();
+		QueneISSKUNKED();
 
 		//if (&Globals::EndQuene)
 		//{
