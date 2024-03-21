@@ -23,3 +23,5 @@ After equipping a trap it bugs out and you cant do anything
 Semi Working Duos and other playlists
 Not Working Floor Is Lava
 
+
+OLD AS FUCK GS, Probably Shit and not working either
